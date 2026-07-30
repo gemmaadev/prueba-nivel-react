@@ -8,7 +8,7 @@ interface ProductCardProps {
 export function ProductCard({ product, onClick }: ProductCardProps) {
   return (
     <li
-      className="flex flex-col boder shadow-sm border-gray-200 p-6 rounded gap-2"
+      className="flex flex-col boder shadow-sm border-gray-200 p-6 rounded gap-2 cursor-pointer"
       onClick={() => onClick(product.id)}
     >
       <img
