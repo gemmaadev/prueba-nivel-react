@@ -1,12 +1,13 @@
 import { Link, useNavigate, useParams } from "react-router";
 import { products } from "../data/products";
+import { getById } from "../features/product/utils/getById";
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
 
   const navigate = useNavigate();
 
-  const foundProduct = products.find((product) => product.id === id);
+  const foundProduct = getById(products, id);
 
   if (!foundProduct) {
     return (
