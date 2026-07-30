@@ -1,8 +1,8 @@
 import { ProductCard } from "./ProductCard";
 import { useNavigate } from "react-router";
-import { useProductList } from "../hooks/useProductList";
+import { useProductList } from "../hooks/useProducstList";
 
-export function ProductList() {
+export function ProductsList() {
   const navigate = useNavigate();
 
   const { productList, loading, error } = useProductList();
