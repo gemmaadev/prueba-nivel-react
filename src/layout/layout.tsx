@@ -29,7 +29,7 @@ export default function Layout() {
       </main>
 
       <footer className="border-t border-gray-200 text-center text-gray-600 p-6">
-        Copyright 2026 - Todos los derechos reservados
+        Copyright © 2026 - Todos los derechos reservados
       </footer>
     </div>
   );
