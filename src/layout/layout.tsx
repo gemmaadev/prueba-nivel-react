@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router";
 export default function Layout() {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="flex border border-b border-gray-200 px-6 py-8">
+      <header className="flex border border-b border-gray-200 px-6 py-5">
         <nav className="flex gap-5">
           <NavLink
             to={"/"}
