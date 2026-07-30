@@ -1,17 +1,27 @@
-import { useState } from "react";
-import { products } from "../../../data/products";
-import type { Product } from "../types/product";
 import { ProductCard } from "./ProductCard";
 import { useNavigate } from "react-router";
+import { useProductList } from "../hooks/useProductList";
 
 export function ProductList() {
-  const [productList] = useState<Product[]>(products);
-
   const navigate = useNavigate();
+
+  const { productList, loading, error } = useProductList();
 
   const handleCardClick = (id: string) => {
     navigate(`/products/${id}`);
   };
+
+  if (loading) {
+    return <p>Cargando...</p>;
+  }
+
+  if (error) {
+    return (
+      <p className="text-red-600">
+        Ha ocurrido un error y no se han podido cargar los productos
+      </p>
+    );
+  }
 
   return (
     <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
