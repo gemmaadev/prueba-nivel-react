@@ -1,15 +1,18 @@
 import { Link, useNavigate, useParams } from "react-router";
-import { products } from "../data/products";
-import { getById } from "../features/product/utils/getById";
+import { useProductDetail } from "../features/product/hooks/useProductDetail";
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
 
   const navigate = useNavigate();
 
-  const foundProduct = getById(products, id);
+  const { productDetail, loading, error } = useProductDetail(id);
 
-  if (!foundProduct) {
+  if (loading) {
+    return <p>Cargando...</p>;
+  }
+
+  if (error || !productDetail) {
     return (
       <div className="flex flex-1 flex-col justify-center text-center items-center gap-3">
         <h1 className="font-bold text-3xl text-red-600">
@@ -38,16 +41,16 @@ export default function ProductDetail() {
         ← Volver atrás
       </button>
       <img
-        src={foundProduct.image.src}
-        alt={foundProduct.image.alt}
+        src={productDetail.image.src}
+        alt={productDetail.image.alt}
         className="w-full h-40 object-cover"
       />
       <span className="uppercase text-sm text-gray-600">
-        {foundProduct.category}
+        {productDetail.category}
       </span>
-      <h3 className="text-xl font-bold">{foundProduct.title}</h3>
-      <p>{foundProduct.description}</p>
-      <p className="text-xl">{foundProduct.price}€</p>
+      <h3 className="text-xl font-bold">{productDetail.title}</h3>
+      <p>{productDetail.description}</p>
+      <p className="text-xl">{productDetail.price}€</p>
     </div>
   );
 }
